@@ -27,9 +27,13 @@ def check_value(cap) :
 def get_name() :
     result  = subprocess.run(['headsetcontrol', '-?'], stdout=subprocess.PIPE)
     split = result.stdout.decode().split('Found ')
-    name = split[1].split("!")[0]
-    
-    logging.debug("headset name " + name)
+    if len(split) > 1 :
+        name = split[1].split("!")[0]
+        logging.debug("headset name " + name)
+    else :
+        name = None
+        logging.debug("no supported headset found")
+
     return name
 
 # Comm with headset

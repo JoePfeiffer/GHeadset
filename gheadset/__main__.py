@@ -66,29 +66,30 @@ def main(args=None) :
     headset_capabilities = Capabilities()
     
     result = send_headset(cmd='?')
-    split = result.split('\n')
-    for char in split[0] :
-        headset_capabilities.insert(all_capabilities.lookup(char))
+    if None != result :
+        split = result.split('\n')
+        for char in split[0] :
+            headset_capabilities.insert(all_capabilities.lookup(char))
         
-    for cap in headset_capabilities :
-        logging.debug("capability:  " + cap.long_option)
+        for cap in headset_capabilities :
+            logging.debug("capability:  " + cap.long_option)
 
-    # set up GUI.
-    if not args.debug :
-        mainWin = MainWindow(headset_name, headset_capabilities)
-    else :
-        mainWin = MainWindow(headset_name, all_capabilities)
+        # set up GUI.
+        if not args.debug :
+            mainWin = MainWindow(headset_name, headset_capabilities)
+        else :
+            mainWin = MainWindow(headset_name, all_capabilities)
 
-    # start battery check and chat mix timer loops
-    if (args.batterypolltime > 0 ) and (headset_capabilities.lookup('b') or args.debug) :
-        start_checking(all_capabilities.lookup('b'), args.batterypolltime)
+        # start battery check and chat mix timer loops
+        if (args.batterypolltime > 0 ) and (headset_capabilities.lookup('b') or args.debug) :
+            start_checking(all_capabilities.lookup('b'), args.batterypolltime)
 
-    if (args.chatmixpolltime > 0) and (headset_capabilities.lookup('m') or args.debug) :
-        start_checking(all_capabilities.lookup('m'), args.chatmixpolltime)
+        if (args.chatmixpolltime > 0) and (headset_capabilities.lookup('m') or args.debug) :
+            start_checking(all_capabilities.lookup('m'), args.chatmixpolltime)
 
-    # and go!
-    mainWin.show_all()
-    Gtk.main()
+        # and go!
+        mainWin.show_all()
+        Gtk.main()
 
 if __name__=="__main__" :
     sys.exit(main())
