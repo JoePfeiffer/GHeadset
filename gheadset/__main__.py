@@ -33,7 +33,7 @@ def main(args=None) :
     parser = argparse.ArgumentParser(prog="gheadset",
                                      description="GUI front end to headsetcontrol",
                                      epilog="requires gtk")
-    parser.add_argument("-b", "--batterypolltime", required=False, default=60, type=int, help="battery poll time in seconds (default 60; 0 for no poll)")
+    parser.add_argument("-b", "--batterypolltime", required=False, default=1, type=int, help="battery poll time in seconds (default 60; 0 for no poll)")
     parser.add_argument("-c", "--chatmixpolltime", required=False, default=1, type=int, help="chat mix poll time in seconds (default 1; 0 for no poll)")
     parser.add_argument("-d", "--debug", required=False, default=False, action="store_true", help="create GUI with full program capabilities, and log commands.")
     

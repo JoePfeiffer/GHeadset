@@ -71,19 +71,20 @@ class Capability :
     # if it's less than 0 we'll display a label saying it's charging
     # hopefully nothing but the battery will ever return a value less than 0
     def setPercent(self, value) :
+        parent = self.actuator.get_parent()
         if value >= 0 :
             if self.actuator != self.displayLevel :
-                mainWin.grid.remove(self.actuator)
+                parent.remove(self.actuator)
                 self.actuator = self.displayLevel
-                mainWin.grid.attach(self.actuator, 1, self.row, 1, 1)
-                mainWin.show_all()
+                parent.attach(self.actuator, 1, self.row, 1, 1)
+                self.actuator.show_all()
             self.actuator.set_fraction(value)
         else :
             if self.actuator != self.displayCharging :
-                mainWin.grid.remove(self.actuator)
+                parent.remove(self.actuator)
                 self.actuator = self.displayCharging
-                mainWin.grid.attach(self.actuator, 1, self.row, 1, 1)
-                mainWin.show_all()        
+                parent.attach(self.actuator, 1, self.row, 1, 1)
+                self.actuator.show_all()        
 
     # String capability (actuator is a Gtk.Entry)
     def onEntry(self, entry) :
