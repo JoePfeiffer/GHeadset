@@ -54,7 +54,7 @@ class MainWindow(Gtk.ApplicationWindow):
 class ErrorDialog(Gtk.MessageDialog) :
     def __init__(self, message) :
         super().__init__(title="Unable to Communicate With Headset",
-                         text="Unable to Communicate With Headset",
+                         text="Unable to Communicate With Headset (is it turned on?)",
                          parent = None,
                          buttons = Gtk.ButtonsType.OK)
         self.format_secondary_text(message)
